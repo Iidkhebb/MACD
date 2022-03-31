@@ -27,10 +27,10 @@ class StockReader(object):
 
 	def get_df(self):
 		data = yf.download(
-			tickers     =  self.instance.setting.get("stock").get("ticker"),
-			period      =  self.instance.setting.get("stock").get("period"),
-			interval    =  self.instance.setting.get("stock").get("interval"),
-			auto_adjust =  True,
+			tickers = self.instance.setting.get("stock").get("ticker"),
+			period = self.instance.setting.get("stock").get("period"),
+			interval = self.instance.setting.get("stock").get("interval"),
+			auto_adjust = True,
 			prepost=True,
 			threads=True
 		)
