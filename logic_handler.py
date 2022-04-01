@@ -36,10 +36,9 @@ class logic:
 			return -1
 		return 0
 
-	def get_date(vol, reader):
-		for r in reader:
-			if (r['Volume'] == str(vol)):
-				return r['Date']
+	def get_date(signal, r):
+		if (int(r[-1]['macd_signal']) == signal):
+			return r[-1]['Date']
 		return
 
 	def check_signals():
@@ -49,8 +48,8 @@ class logic:
 			if(logic.get_signal(r) == 1):
 				name = r.replace(".csv", "")
 				vol = logic.get_volume(r)
-				date = logic.get_date(vol, logic.get_dataframe_raw(r))
-				output.append([name, vol, date])
+				date = logic.get_date(1, logic.get_dataframe_raw(r))
+				output.append([name, vol, str(date)])
 		return output
 
-print(logic.get_date(1271633462, logic.get_dataframe_raw('ADA-USD.csv')))
+print(logic.check_signals())
