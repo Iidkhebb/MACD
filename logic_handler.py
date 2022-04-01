@@ -51,5 +51,3 @@ class logic:
 				date = logic.get_date(1, logic.get_dataframe_raw(r))
 				output.append([name, vol, str(date)])
 		return output
-
-print(logic.check_signals())
