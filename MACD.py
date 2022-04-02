@@ -9,6 +9,7 @@ import os
 import yfinance as yf
 from utils import *
 from time import sleep as wait
+from logic_handler import *
 
 pair_list = tools.read_coins()
 len_pair = len(pair_list)
@@ -54,3 +55,5 @@ while(pair_index < len(pair_list)):
 	if __name__ == "__main__":
 		main()
 	pair_index += 1
+
+logic.json_append(logic.check_signals())

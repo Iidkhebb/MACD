@@ -1,5 +1,6 @@
 import csv
 import os
+import json
 
 class logic:
 	def get_ouput_name():
@@ -45,9 +46,26 @@ class logic:
 		files = logic.get_ouput_name()
 		output = []
 		for r in files:
-			if(logic.get_signal(r) == 1):
+			if(logic.get_signal(r) == 0):
 				name = r.replace(".csv", "")
 				vol = logic.get_volume(r)
-				date = logic.get_date(1, logic.get_dataframe_raw(r))
+				date = logic.get_date(0, logic.get_dataframe_raw(r))
 				output.append([name, vol, str(date)])
 		return output
+	
+	def json_append(output):
+		out = []
+		for r in output:	
+			save = {
+				'date' : r[2],
+				'volume' : r[1],
+				'name' : r[0]
+			}
+			out.append(save)
+		try:
+			with open('./signals.json', "a") as file:
+				json.dump(out, file)
+		except:
+			print("Error occurred during saving output")
+			pass
+		return
