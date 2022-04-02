@@ -41,7 +41,18 @@ class logic:
 		if (int(r[-1]['macd_signal']) == signal):
 			return r[-1]['Date']
 		return
-
+	
+	def get_category(pair):
+		data = []
+		with open("./Coins_List/coins.csv", newline='') as f:
+			reader = csv.DictReader(f)
+			for r in reader:
+				data.append(r)
+		for r in data:
+			if (r['name'] == pair):
+				return r['category']
+		return
+	
 	def check_signals():
 		files = logic.get_ouput_name()
 		output = []
@@ -50,16 +61,18 @@ class logic:
 				name = r.replace(".csv", "")
 				vol = logic.get_volume(r)
 				date = logic.get_date(0, logic.get_dataframe_raw(r))
-				output.append([name, vol, str(date)])
+				category = logic.get_category(name)
+				output.append([name, vol, str(date), category])
 		return output
 	
 	def json_append(output):
 		out = []
 		for r in output:	
 			save = {
+				'name' : r[0],
+				'category' : r[3],
 				'date' : r[2],
-				'volume' : r[1],
-				'name' : r[0]
+				'volume' : r[1]
 			}
 			out.append(save)
 		try:
