@@ -30,10 +30,10 @@ class Controller(object):
 		df.to_csv("./output_csv/" + str(pair_list[pair_index]) + ".csv")
 
 while(pair_index < len(pair_list)):
-	try:
-		print("All modules are loaded ")
-	except Exception as e:
-		print("Some Modules are Missing :{} ".format(e))
+	# try:
+	# 	print("All modules are loaded ")
+	# except Exception as e:
+	# 	print("Some Modules are Missing :{} ".format(e))
 
 	def main():
 		print(pair_list[pair_index])

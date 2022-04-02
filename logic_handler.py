@@ -57,10 +57,10 @@ class logic:
 		files = logic.get_ouput_name()
 		output = []
 		for r in files:
-			if(logic.get_signal(r) == 0):
+			if(logic.get_signal(r) == 1):
 				name = r.replace(".csv", "")
 				vol = logic.get_volume(r)
-				date = logic.get_date(0, logic.get_dataframe_raw(r))
+				date = logic.get_date(1, logic.get_dataframe_raw(r))
 				category = logic.get_category(name)
 				output.append([name, vol, str(date), category])
 		return output
