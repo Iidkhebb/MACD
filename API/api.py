@@ -1,16 +1,30 @@
-from fastapi import FastAPI, Query
+from flask import Flask, request, jsonify
 import json
+import os
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
+@app.route("/api", methods=["GET"])
+def get_data():
+	if request.method == "GET":
+		data = json.load(open("./signals.json"))
+		print(data)
+		return jsonify(data)
 
-def get_current_ouput():
-	with open('./signals.json', 'r') as file:
-		return json.load(file)
 
-# @app.get("/get_by_pair/{pair}")
+@app.route("/search", methods=["GET"])
+def search():
+	args = request.args
+	name = args.get("name") 
+	if request.method == "GET":
+		data = json.load(open("./signals.json"))
+		if args:
+			for r in data:
+				if r["name"].lower() == name.lower():
+					return jsonify(r)
+			return jsonify({"error": "No results found"})
+		return jsonify({"error": "No search parameters provided"})
 
-# def get_single_pair(pair: str):
-	
-# 	return
+
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port=4000, debug=True)

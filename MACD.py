@@ -29,32 +29,27 @@ class Controller(object):
 		df = signal_helper.get_signals()
 		df.to_csv("./output_csv/" + str(pair_list[pair_index]) + ".csv")
 
-while(pair_index < len(pair_list)):
-	# try:
-	# 	print("All modules are loaded ")
-	# except Exception as e:
-	# 	print("Some Modules are Missing :{} ".format(e))
-
 	def main():
-		print(pair_list[pair_index])
-		commands = {
-			"stock":{
-				"ticker": str(pair_list[pair_index]),
-				'interval':"1d",
-				'period':"3mo"
-			},
-			"algorithm":{
-				"slow_ma":12,
-				"fast_ma":26,
-				"smooth":9
+		global pair_index
+		for row in pair_list:
+			print(row)
+			commands = {
+				"stock":{
+					"ticker": str(row),
+					'interval':"1d",
+					'period':"3mo"
+				},
+				"algorithm":{
+					"slow_ma":12,
+					"fast_ma":26,
+					"smooth":9
+				}
 			}
-		}
-		helper = Controller(commands=commands)
-		response  = helper.get()
+			helper = Controller(commands=commands)
+			response  = helper.get()
+			pair_index += 1
 
-	if __name__ == "__main__":
-		main()
-	pair_index += 1
-
-
-logic.json_append(logic.check_signals())
+if __name__ == "__main__":
+	Controller.main()
+	logic.json_append(logic.check_signals())
+	print("Done")

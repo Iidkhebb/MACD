@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  user-network:
+    name: user-network
+    driver: bridge
+
+services:
+  api:
+    image: flask-api
+    build: ./api
+    volumes:
+      - .:/app
+    networks:
+      - user-network
+    ports:
+      - "4000:4000"
+  
+  backend:
+    image: backend-macd
+    build: .
+    volumes:
+      - .:/app
+    networks:
+      - user-network

@@ -76,7 +76,7 @@ class logic:
 			}
 			out.append(save)
 		try:
-			with open('./signals.json', "a") as file:
+			with open('./api/signals.json', "a") as file:
 				json.dump(out, file)
 		except:
 			print("Error occurred during saving output")
