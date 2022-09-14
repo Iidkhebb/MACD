@@ -1,5 +1,5 @@
 <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="MACD_Indicator_0"></a>MACD Indicator</h1>
-<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="_Easy_tool_for_find_MACD_signals_crossover__1"></a><em>Easy tool for find MACD signals crossover</em></h2>
+<h2 class="code-line" data-line-start=1 data-line-end=2 ><a id="_Easy_tool_for_finding_MACD_signals_crossover__1"></a><em>Easy tool for finding MACD signals crossover</em></h2>
 <p class="has-line-data" data-line-start="4" data-line-end="5"><a href="https://travis-ci.org/joemccann/dillinger"><img src="https://travis-ci.org/joemccann/dillinger.svg?branch=master" alt="Build Status"></a></p>
 <p class="has-line-data" data-line-start="6" data-line-end="9">MACD Indicator  is a tool that looks for bullish signals using MACD indicator that has already<br>
 has over 65% sucess rate in backtest mode.<br>
